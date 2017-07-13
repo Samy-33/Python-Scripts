@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+"""
+: Uses Python 2.7
+"""
+
+
 from bs4 import BeautifulSoup as bs
 import requests as rq
 import getpass
@@ -296,6 +301,7 @@ def main():
     menu(r)
                 
 if __name__ == '__main__':
+
     main()
         
         

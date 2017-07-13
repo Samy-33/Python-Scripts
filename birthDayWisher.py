@@ -1,4 +1,7 @@
 #!/usr/bin/python
+"""
+: Uses Python 2.7
+"""
 
 from bs4 import BeautifulSoup as bs
 import requests as rq
@@ -38,7 +41,8 @@ def wishBirthdays(r):
 	if div == None:
 		print 'There is no birthday today\n----------------'
 		return
-	names = div.find_all('div', {'class' : 'bv'})
+	names = div.find_all('div', {'class' : ['bw', 'cc']})
+
 	for x in names:
 		for string in x.strings:
 			print string
@@ -72,14 +76,20 @@ def main():
 	usr_name = raw_input('Enter your Username\n> ')
 	passwd = getpass.getpass()
 	r = None
+	print "logging in...\n----------------"
 	try:
 		r = login(usr_name, passwd)
+		print "Logged in successfully!\n------------------------"
 	except e:
 		print 'Error is: '+str(e)
 		exit(0)
-	
-	wishBirthdays(r)
+	try:
+		wishBirthdays(r)
+	except:
+		print "Error... Try again!"
+		exit(0)
 	s.get(url+'/logout')
+	print "Logged out Successfully!\n------------------"
 
 
 
